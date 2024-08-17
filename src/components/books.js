@@ -42,6 +42,8 @@ const Book = (props) => (
 );
 
 export default function Books() {
+  console.log(backend_url);
+  console.log("AAAA");
 
   const [books, setBooks] = useState([]);
 
@@ -52,7 +54,7 @@ export default function Books() {
         setBooks(response.data);
       })
       .catch((error) => {
-        console.log(backend_url);
+        
         console.log(error.response.data);
       });
   }, []);
