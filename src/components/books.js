@@ -57,7 +57,7 @@ export default function Books() {
 
   const deleteBook = (id) => {
     axios
-      .delete(backend_url + '/api/book/' + id)
+      .delete(backend_url + '/api/v1/book/' + id)
       .then((response) => {
         console.log(response.data);
       });
@@ -81,7 +81,7 @@ export default function Books() {
           return (
             <Book
               bookTitle={book.bookTitle}
-              bookAuthorauthor={book.bookAuthor}
+              bookAuthor={book.bookAuthor}
               description={book.description}
               key={book._id}
               keyt={book._id}

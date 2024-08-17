@@ -10,16 +10,16 @@ export default function EditBook() {
     window.location.toString().split('/').length - 1
   ];
 
-  const [title, setOnChangeTitle] = useState(``);
-  const [author, setOnChangeAuthor] = useState(``);
+  const [bookTitle, setOnChangeTitle] = useState(``);
+  const [bookAuthor, setOnChangeAuthor] = useState(``);
   const [description, setOnChangeDescription] = useState(``);
 
   useEffect(() => {
     axios
-      .get(`${backend_url}/books/${id}`)
+      .get(`${backend_url}/book/${id}`)
       .then((response) => {
-        setOnChangeTitle(response.data.title);
-        setOnChangeAuthor(response.data.author);
+        setOnChangeTitle(response.data.bookTitle);
+        setOnChangeAuthor(response.data.bookAuthor);
         setOnChangeDescription(response.data.description);
       })
       .catch((error) => {
@@ -31,17 +31,17 @@ export default function EditBook() {
     e.preventDefault();
 
     const book = { 
-      title: title,
-      author: author,
+      bookTitle: bookTitle,
+      bookAuthor: bookAuthor,
       description: description
     };
 
     console.log(book);
 
-    console.log(`${backend_url}/books/update/${id}`);
+    console.log(`${backend_url}/book/${id}`);
 
     axios
-      .post(`${backend_url}/books/update/${id}`, book)
+      .post(`${backend_url}/books/${id}`, book)
       .then((res) => {
         window.location = '/';
       });
@@ -66,7 +66,7 @@ export default function EditBook() {
                   placeholder="Title of the Book"
                   name="title"
                   className="form-control"
-                  value={title}
+                  value={bookTitle}
                   onChange={(e) => setOnChangeTitle(e.target.value)}
                   spellCheck="false"
                   data-ms-editor="true"
@@ -79,7 +79,7 @@ export default function EditBook() {
                   placeholder="Author"
                   name="author"
                   className="form-control"
-                  value={author}
+                  value={bookAuthor}
                   onChange={(e) => setOnChangeAuthor(e.target.value)}
                   spellCheck="false"
                   data-ms-editor="true"
