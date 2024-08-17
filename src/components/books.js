@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const backend_url = process.env.REACT_APP_BACKEND_URL;
+//const backend_url = process.env.REACT_APP_BACKEND_URL;
+const backend_url = "https://newbookstore-backend-bry287q4p-nelums-projects.vercel.app";
 
 const NavBar = () => (
   <div>
@@ -51,13 +52,14 @@ export default function Books() {
         setBooks(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(backend_url);
+        console.log(error.response.data);
       });
   }, []);
 
   const deleteBook = (id) => {
     axios
-      .delete(backend_url + '/api/v1/book/' + id)
+      .delete(backend_url + '/api/v1/book' + id)
       .then((response) => {
         console.log(response.data);
       });
